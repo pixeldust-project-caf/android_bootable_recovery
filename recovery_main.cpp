@@ -77,6 +77,10 @@ static bool IsDeviceUnlocked() {
   return "orange" == android::base::GetProperty("ro.boot.verifiedbootstate", "");
 }
 
+std::string get_build_type() {
+  return android::base::GetProperty("ro.build.type", "");
+}
+
 static constexpr const char* adb_keys_data = "/data/misc/adb/adb_keys";
 static constexpr const char* adb_keys_root = "/adb_keys";
 
