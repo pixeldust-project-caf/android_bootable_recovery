@@ -794,8 +794,8 @@ Device::BuiltinAction start_recovery(Device* device, const std::vector<std::stri
   }
 
   std::vector<std::string> title_lines =
-      android::base::Split(android::base::GetProperty("ro.build.fingerprint", ""), ":");
-  title_lines.insert(std::begin(title_lines), "Android Recovery");
+      android::base::Split(android::base::GetProperty("ro.pixeldust.version", ""), ":");
+  title_lines.insert(std::begin(title_lines), "PixelDust Recovery");
   ui->SetTitle(title_lines);
 
   ui->ResetKeyInterruptStatus();
