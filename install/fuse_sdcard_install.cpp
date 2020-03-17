@@ -178,8 +178,7 @@ error:
   return -1;
 }
 
-int ApplyFromSdcard(Device* device, RecoveryUI* ui,
-                    const std::function<bool(Device*)>& ask_to_continue_unverified_fn) {
+int ApplyFromSdcard(Device* device, RecoveryUI* ui) {
   if (is_ufs_dev()) {
     if (do_sdcard_mount_for_ufs() != 0) {
       LOG(ERROR) << "\nFailed to mount sdcard\n";
@@ -242,7 +241,7 @@ int ApplyFromSdcard(Device* device, RecoveryUI* ui,
 
     result = install_package(FUSE_SIDELOAD_HOST_PATHNAME, false, true, 0 /*retry_count*/,
                              true /* verify */, ui);
-    if (result == INSTALL_UNVERIFIED && ask_to_continue_unverified_fn(device)) {
+    if (result == INSTALL_UNVERIFIED && ask_to_continue_unverified(device)) {
       result = install_package(FUSE_SIDELOAD_HOST_PATHNAME, false, false, 0 /*retry_count*/,
                                false /* verify */, ui);
     }
