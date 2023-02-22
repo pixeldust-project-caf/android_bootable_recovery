@@ -396,6 +396,11 @@ int RecoveryUI::OnInputEvent(int fd, uint32_t epevents) {
     ProcessKey(ev.code, ev.value);
   }
 
+  // For Lid switch handle
+  if (ev.type == EV_SW) {
+    SetSwCallback(ev.code, ev.value);
+  }
+
   return 0;
 }
 
